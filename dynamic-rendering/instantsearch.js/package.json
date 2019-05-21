@@ -17,5 +17,10 @@
     "eslint-plugin-prettier": "3.0.0",
     "parcel-bundler": "1.10.3",
     "prettier": "1.15.3"
+  },
+  "dependencies": {
+    "express": "^4.17.0",
+    "rendertron-middleware": "^0.1.5",
+    "rendertron": "^2.0.1"
   }
 }
