@@ -1,0 +1,34 @@
+version: 2.1
+
+executors:
+  node9:
+    docker:
+      - image: circleci/node:9
+
+commands:
+  build_project:
+    description: "Building << path >>..."
+    parameters:
+      path:
+        type: string
+        default: ""
+    steps:
+      - run:
+          name: "Building << parameters.path >>"
+          command: |
+            cd "<< parameters.path >>"
+            yarn
+            yarn build
+jobs:
+  build_dynamic_rendering:
+    executor: node9
+    steps:
+      - checkout
+      - build_project:
+           path: "dynamic-rendering/instantsearch.js"
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build_dynamic_rendering
