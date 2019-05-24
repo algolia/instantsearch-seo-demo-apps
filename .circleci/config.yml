@@ -19,6 +19,10 @@ commands:
             cd "<< parameters.path >>"
             yarn
             yarn build
+      - run:
+          name: "Deploying << parameters.path >>"
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/is-seo-dynamic-routing-0.git master
 jobs:
   build_dynamic_rendering:
     executor: node9

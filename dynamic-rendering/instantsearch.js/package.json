@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "express": "^4.17.0",
-    "rendertron-middleware": "^0.1.5",
-    "rendertron": "^2.0.1"
+    "rendertron-middleware": "^0.1.5"
   }
 }
