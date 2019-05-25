@@ -18,6 +18,13 @@ search.addWidget(
 );
 
 search.addWidget(
+  instantsearch.widgets.menu({
+    container: '#menu',
+    attribute: 'categories',
+  })
+);
+
+search.addWidget(
   instantsearch.widgets.hits({
     container: '#hits',
     templates: {
