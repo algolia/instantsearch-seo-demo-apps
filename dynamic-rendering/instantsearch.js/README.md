@@ -32,8 +32,9 @@
   - Use curl with [one of the supported user agents](https://github.com/GoogleChrome/rendertron/blob/f24343efc77b304664d2f1a682da706418c7eb89/middleware/src/middleware.ts#L25-L40) and check it's prerendered.
 
     ```sh
-    curl --user-agent "bingbot" http://localhost:3000
+    curl --user-agent "bingbot" https://*****.serveo.net
     ```
   - Use your browser 
+    ![prerendering in the browser](./prerendering-in-browser.gif)
 
 
