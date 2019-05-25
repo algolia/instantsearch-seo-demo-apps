@@ -19,18 +19,32 @@ commands:
             cd "<< parameters.path >>"
             yarn
             yarn build
+
+  deploy_project:
+    description: "Deploying << path >>..."
+    parameters:
+      path:
+        type: string
+        default: ""
+      app_name:
+        type: string
+        default: ""
+    steps:
       - run:
           name: "Deploying << parameters.path >>"
           command: |
             git subtree push --prefix << parameters.path >> https://heroku:$HEROKU_API_KEY@git.heroku.com/<< parameters.app_name >>.git master
+
 jobs:
   build_dynamic_rendering:
     executor: node9
     steps:
       - checkout
       - build_project:
-           path: "dynamic-rendering/instantsearch.js"
-           app_name: "is-seo-dynamic-routing-0"
+          path: "dynamic-rendering/instantsearch.js"
+      - deploy_project:
+          path: "dynamic-rendering/instantsearch.js"
+          app_name: "is-seo-dynamic-routing-0"
 
 workflows:
   version: 2.1
