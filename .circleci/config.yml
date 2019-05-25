@@ -60,4 +60,7 @@ workflows:
       - deploy_dynamic_rendering:
           requires:
             - build_dynamic_rendering
+          filters:
+            branches:
+              only: master
 
