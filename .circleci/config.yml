@@ -34,9 +34,6 @@ commands:
           name: "Deploying << parameters.path >>"
           command: |
             git subtree push --prefix << parameters.path >> https://heroku:$HEROKU_API_KEY@git.heroku.com/<< parameters.app_name >>.git master
-          branches:
-            only:
-              - master
 
 jobs:
   build_dynamic_rendering:
@@ -45,12 +42,22 @@ jobs:
       - checkout
       - build_project:
           path: "dynamic-rendering/instantsearch.js"
+
+  deploy_dynamic_rendering:
+    executor: node9
+    steps:
+      - checkout
       - deploy_project:
           path: "dynamic-rendering/instantsearch.js"
           app_name: "is-seo-dynamic-routing-0"
+
 
 workflows:
   version: 2.1
   build:
     jobs:
       - build_dynamic_rendering
+      - deploy_dynamic_rendering:
+          requires:
+            - build_dynamic_rendering
+
