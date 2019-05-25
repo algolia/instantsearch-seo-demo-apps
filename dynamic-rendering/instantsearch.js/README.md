@@ -1,6 +1,10 @@
 # Dynamic rendering with instantsearch.js
 
-## How to run this?
+### Demo
+This demo is deployed on https://is-seo-dynamic-routing-0.herokuapp.com/
+This demo get automatically deployed every time you merge to master.
+
+### Run this for development
 #### 1. make sure rendertron instance is running  
 Go [instantsearch-rendertron-1.herokuapp.com/render](https://instantsearch-rendertron-1.herokuapp.com/render), you should see: 
   
@@ -12,6 +16,8 @@ You can check it's ready to prerender by going on:
   - `https://instantsearch-rendertron-1.herokuapp.com/render/https://algolia.com`
   - `https://instantsearch-rendertron-1.herokuapp.com/render/https://community.algolia.com/instantsearch.js/v2/examples/e-commerce/`
   - `https://instantsearch-rendertron-1.herokuapp.com/render/<https://mywebsite.com>`
+
+Since rendertron is hosted on a heroku free plan, you need to give it some time to warm up.
 
 #### 2. Install the dependencies and run the local server:
 
