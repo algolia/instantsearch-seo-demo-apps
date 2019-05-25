@@ -34,6 +34,9 @@ commands:
           name: "Deploying << parameters.path >>"
           command: |
             git subtree push --prefix << parameters.path >> https://heroku:$HEROKU_API_KEY@git.heroku.com/<< parameters.app_name >>.git master
+          branches:
+            only:
+              - master
 
 jobs:
   build_dynamic_rendering:
