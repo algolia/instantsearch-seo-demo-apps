@@ -8,11 +8,19 @@ const searchClient = algoliasearch(
 const search = instantsearch({
   indexName: 'instant_search',
   searchClient,
+  routing: true,
 });
 
 search.addWidget(
   instantsearch.widgets.searchBox({
     container: '#searchbox',
+  })
+);
+
+search.addWidget(
+  instantsearch.widgets.menu({
+    container: '#menu',
+    attribute: 'categories',
   })
 );
 
