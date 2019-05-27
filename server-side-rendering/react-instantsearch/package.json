@@ -1,0 +1,43 @@
+{
+  "name": "ssr-react-instantsearch",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run build; nodemon --watch dist/server.js dist/server & npm run build -- --watch",
+    "build": "webpack",
+    "lint": "eslint --ext .js,.ts,.tsx .",
+    "lint:fix": "npm run lint -- --fix",
+    "type-check": "tsc",
+    "type-check:watch": "yarn type-check -- --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
+    "@babel/preset-env": "7.4.5",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@typescript-eslint/eslint-plugin": "1.9.0",
+    "@typescript-eslint/parser": "1.9.0",
+    "babel-eslint": "10.0.1",
+    "babel-loader": "8.0.4",
+    "eslint": "5.16.0",
+    "eslint-config-algolia": "13.3.0",
+    "eslint-config-prettier": "4.3.0",
+    "eslint-plugin-import": "2.17.2",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-react": "7.11.1",
+    "nodemon": "1.19.0",
+    "prettier": "1.16.4",
+    "typescript": "3.4.5",
+    "webpack": "4.32.2",
+    "webpack-cli": "3.3.2",
+    "webpack-node-externals": "1.7.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
