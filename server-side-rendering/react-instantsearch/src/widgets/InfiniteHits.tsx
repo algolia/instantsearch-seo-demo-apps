@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-  InfiniteHits,
-  Hits,
-  Highlight,
-  Snippet,
-} from 'react-instantsearch-dom';
+import { InfiniteHits, Highlight, Snippet } from 'react-instantsearch-dom';
+import { Hit } from 'react-instantsearch-core';
 
 interface Props {
-  hit: Hits;
+  hit: Hit;
 }
 
-const Hit = ({ hit }: Props): React.ReactNode => (
+const HitComponent = ({ hit }: Props): JSX.Element => (
   <article>
     <header>
       <img src={hit.image} alt={hit.name} />
@@ -30,4 +26,4 @@ const Hit = ({ hit }: Props): React.ReactNode => (
   </article>
 );
 
-export default () => <InfiniteHits hitComponent={Hit} />;
+export default () => <InfiniteHits hitComponent={HitComponent} />;

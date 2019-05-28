@@ -726,6 +726,18 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@types/algoliasearch-helper@*":
+  version "2.26.1"
+  resolved "https://registry.yarnpkg.com/@types/algoliasearch-helper/-/algoliasearch-helper-2.26.1.tgz#60cf377e7cb4bd9a55f7eba35182792763230a24"
+  integrity sha512-JN1wq/yLxxBcc6MeSe57F9Aqv8wL964L0nBOUTSQ5OECzWxaECuGYV06VnGKn/c+9AGB97RAgqx2PUbYflZNqA==
+  dependencies:
+    "@types/algoliasearch" "*"
+
+"@types/algoliasearch@*":
+  version "3.30.12"
+  resolved "https://registry.yarnpkg.com/@types/algoliasearch/-/algoliasearch-3.30.12.tgz#3270ba642107f00cd743c29b8cae30c92a043dba"
+  integrity sha512-IiJ4/GP3NEFWZkZhF5/cPxIZNzAitLdZnMpo5KlWLcNL567LHDHG2NOZLwXzRrTuxNa1zmqZJKEDWHnw8kp3Ng==
+
 "@types/body-parser@*":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -794,6 +806,22 @@
   integrity sha512-eIRpEW73DCzPIMaNBDP5pPIpK1KXyZwNgfxiVagb5iGiz6da+9A5hslSX6GAQKdO7SayVCS/Fr2kjqprgAvkfA==
   dependencies:
     "@types/react" "*"
+
+"@types/react-instantsearch-core@*":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@types/react-instantsearch-core/-/react-instantsearch-core-5.2.8.tgz#8f9c9e07165ab653a136b7e63d6b5c0b98f2c37f"
+  integrity sha512-i1b40R39zDjmLokHS1KyxvSFaslX31HGkH3aJx2x0uOOgkntyDyKfvq663IYvL945B0r7u6+CnHB/ZqLcFYFKA==
+  dependencies:
+    "@types/algoliasearch-helper" "*"
+    "@types/react" "*"
+
+"@types/react-instantsearch-dom@5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@types/react-instantsearch-dom/-/react-instantsearch-dom-5.2.4.tgz#9d2309a0b822408295a7f82e7f2fcd491ffa657f"
+  integrity sha512-WwdMqQ6zxKAAj8Zi+fLuTofmQlu5mSDOW1lhPQ//YL5lvTzTp1fAruqeMjtVfw7trhimMVH3iuwct6yst9vtCA==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-instantsearch-core" "*"
 
 "@types/react-router-dom@4.3.3":
   version "4.3.3"
@@ -2919,7 +2947,7 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-history@^4.9.0:
+history@4.9.0, history@^4.9.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/history/-/history-4.9.0.tgz#84587c2068039ead8af769e9d6a6860a14fa1bca"
   integrity sha512-H2DkjCjXf0Op9OAr6nJ56fcRkTSNrUiv41vNJ6IswJjif6wlpZK0BTfFbi7qK9dXLSYZxkq5lBsj3vUjlYBYZA==
@@ -4523,7 +4551,7 @@ react-dom@16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
-react-instantsearch-core@^5.6.0:
+react-instantsearch-core@5.6.0, react-instantsearch-core@^5.6.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/react-instantsearch-core/-/react-instantsearch-core-5.6.0.tgz#1d5e9a6c07bc6bbb732953b19f22c4fa584a8405"
   integrity sha512-dwKF+2XuFnpOaRD0Xnz1cRg26HL7TGhT/PnSyqAUgio8xiKywNQhJUeXL6Rgf6LqKxC0Ey3si8zV+IMxeGDPfA==

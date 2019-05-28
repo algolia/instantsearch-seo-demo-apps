@@ -3,22 +3,23 @@ import qs from 'qs';
 import { createInstantSearch } from 'react-instantsearch-dom/server';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
 import { Configure, SearchBox, Menu, Hits, InfiniteHits } from './widgets';
-
-const { InstantSearch, findResultsState } = createInstantSearch();
-
-const createURL = (state): string => `?${qs.stringify(state)}`;
-
-const searchStateToUrl = (props, searchState): string =>
-  searchState ? `${props.location.pathname}${createURL(searchState)}` : '';
-const urlToSearchState = (location): object =>
-  qs.parse(location.search.slice(1));
+import { Location } from 'history';
 
 interface Props extends RouteComponentProps {
   resultsState: object;
 }
 
+const { InstantSearch, findResultsState } = createInstantSearch();
+
+const createURL = (state: any): string => `?${qs.stringify(state)}`;
+
+const searchStateToUrl = (props: Props, searchState: any): string =>
+  searchState ? `${props.location.pathname}${createURL(searchState)}` : '';
+const urlToSearchState = (location: Location): object =>
+  qs.parse(location.search.slice(1));
+
 export class App extends Component<Props> {
-  private onSearchStateChange = searchState => {
+  private onSearchStateChange = (searchState: any) => {
     this.props.history.push(
       searchStateToUrl(this.props, searchState),
       searchState

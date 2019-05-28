@@ -15,7 +15,11 @@ declare global {
   }
 }
 
-const Root = ({ resultsState }): JSX.Element => (
+interface Props {
+  resultsState: any;
+}
+
+const Root = ({ resultsState }: Props): JSX.Element => (
   <BrowserRouter>
     <Route
       path="/"

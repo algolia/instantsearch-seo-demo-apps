@@ -1,11 +1,12 @@
 import React from 'react';
 import { Hits, Highlight, Pagination, Snippet } from 'react-instantsearch-dom';
+import { Hit } from 'react-instantsearch-core';
 
 interface Props {
-  hit: Hits;
+  hit: Hit;
 }
 
-const Hit = ({ hit }: Props): React.ReactNode => (
+const HitComponent = ({ hit }: Props): JSX.Element => (
   <article>
     <header>
       <img src={hit.image} alt={hit.name} />
@@ -27,7 +28,7 @@ const Hit = ({ hit }: Props): React.ReactNode => (
 
 export default () => (
   <>
-    <Hits hitComponent={Hit} />
+    <Hits hitComponent={HitComponent} />
     <div className="pagination">
       <Pagination showFirst={false} showLast={false} totalPages={4} />
     </div>

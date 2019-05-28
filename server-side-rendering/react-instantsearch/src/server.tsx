@@ -17,7 +17,12 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
-const Root = ({ resultsState, location }): JSX.Element => (
+interface Props {
+  resultsState: any;
+  location: string;
+}
+
+const Root = ({ resultsState, location }: Props): JSX.Element => (
   <StaticRouter location={location}>
     <Route
       path="/"
