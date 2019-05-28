@@ -2,9 +2,11 @@
   "name": "ssr-react-instantsearch",
   "version": "1.0.0",
   "private": true,
+  "main": "dist/server",
   "scripts": {
-    "start": "npm run build; nodemon --watch dist/server.js dist/server & npm run build -- --watch",
-    "build": "webpack",
+    "start": "node .",
+    "dev": "webpack; nodemon --watch dist/server.js & webpack --watch",
+    "build": "NODE_ENV=production webpack",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "lint:fix": "npm run lint -- --fix",
     "type-check": "tsc",

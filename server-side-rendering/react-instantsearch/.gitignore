@@ -9,6 +9,7 @@
 # production
 /dist/server.js
 /dist/static/bundle.js
+/dist/static/bundle.js.map
 
 # misc
 .DS_Store

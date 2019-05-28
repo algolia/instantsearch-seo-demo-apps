@@ -3,6 +3,11 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
+/*
+ * Configure the environment
+ */
+const ENV = process.env.NODE_ENV || 'development';
+
 module.exports = [
   /*
    * Client entrypoint
@@ -15,7 +20,11 @@ module.exports = [
       publicPath: '/',
       filename: 'bundle.js',
     },
-    mode: 'development',
+    mode: ENV,
+    devtool:
+      ENV === 'production'
+        ? 'module-source-map'
+        : 'cheap-module-inline-source-map',
     target: 'web',
     resolve: {
       /*
@@ -62,7 +71,7 @@ module.exports = [
       libraryTarget: 'commonjs2',
       publicPath: '/',
     },
-    mode: 'development',
+    mode: ENV,
     target: 'node',
     node: {
       __dirname: true,

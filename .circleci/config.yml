@@ -49,7 +49,22 @@ jobs:
       - checkout
       - deploy_project:
           path: "dynamic-rendering/instantsearch.js"
-          app_name: "is-seo-dynamic-routing-0"
+          app_name: "is-seo-dynamic-routing-0b"
+
+  build_server_side_rendering:
+    executor: node9
+    steps:
+      - checkout
+      - build_project:
+          path: "server-side-rendering/react-instantsearch"
+
+  deploy_server_side_rendering:
+    executor: node9
+    steps:
+      - checkout
+      - deploy_project:
+          path: "server-side-rendering/react-instantsearch"
+          app_name: "is-seo-ssr-react-0"
 
   build_client_side_rendering_js:
     executor: node9
@@ -75,6 +90,13 @@ workflows:
       - deploy_dynamic_rendering:
           requires:
             - build_dynamic_rendering
+          filters:
+            branches:
+              only: master
+      - build_server_side_rendering
+      - deploy_server_side_rendering:
+          requires:
+            - build_server_side_rendering
           filters:
             branches:
               only: master
