@@ -1,4 +1,4 @@
-# Client-Side Rendering with React InstantSearch
+# Client-Side Rendering with InstantSearch.js
 
 This demo is deployed on https://is-seo-csr-js-0.herokuapp.com/
 
