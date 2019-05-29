@@ -1,5 +1,5 @@
 import React from 'react';
-import { InfiniteHits, Highlight, Snippet } from 'react-instantsearch-dom';
+import { InfiniteHits, Highlight } from 'react-instantsearch-dom';
 import { Hit } from 'react-instantsearch-core';
 
 interface Props {
@@ -8,21 +8,15 @@ interface Props {
 
 const HitComponent = ({ hit }: Props): JSX.Element => (
   <article>
-    <header>
-      <img src={hit.image} alt={hit.name} />
-    </header>
-    <p>{hit.categories[0]}</p>
     <h1>
       <Highlight attribute="name" hit={hit} />
     </h1>
     <p>
-      <Snippet attribute="description" hit={hit} />
+      <Highlight attribute="description" hit={hit} />
     </p>
-    <footer>
-      <p>
-        <span>$</span> <strong>{hit.price}</strong>
-      </p>
-    </footer>
+    <p>
+      <Highlight attribute="brand" hit={hit} />
+    </p>
   </article>
 );
 
