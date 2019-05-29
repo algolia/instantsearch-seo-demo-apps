@@ -51,6 +51,21 @@ jobs:
           path: "dynamic-rendering/instantsearch.js"
           app_name: "is-seo-dynamic-routing-0"
 
+  build_client_side_rendering_js:
+    executor: node9
+    steps:
+      - checkout
+      - build_project:
+          path: "client-side-rendering/instantsearch.js"
+
+  deploy_client_side_rendering_js:
+    executor: node9
+    steps:
+      - checkout
+      - deploy_project:
+          path: "client-side-rendering/instantsearch.js"
+          app_name: "is-seo-csr-js-0"
+
 
 workflows:
   version: 2.1
@@ -60,6 +75,13 @@ workflows:
       - deploy_dynamic_rendering:
           requires:
             - build_dynamic_rendering
+          filters:
+            branches:
+              only: master
+      - build_client_side_rendering_js
+      - deploy_client_side_rendering_js:
+          requires:
+            - build_client_side_rendering_js
           filters:
             branches:
               only: master
