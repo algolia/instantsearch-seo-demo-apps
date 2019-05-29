@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import qs from 'qs';
 import { createInstantSearch } from 'react-instantsearch-dom/server';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
-import { Configure, SearchBox, Menu, Hits, InfiniteHits } from './widgets';
+import { SearchBox, Menu, Hits, InfiniteHits } from './widgets';
 import { Location } from 'history';
 
 interface Props extends RouteComponentProps {
@@ -37,7 +37,6 @@ export class App extends Component<Props> {
         onSearchStateChange={this.onSearchStateChange}
         createURL={createURL}
       >
-        <Configure />
         <div className="search-panel">
           <div className="search-panel__results">
             <div className="menu">
