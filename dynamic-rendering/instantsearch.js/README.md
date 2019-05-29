@@ -1,7 +1,7 @@
 # Dynamic rendering with instantsearch.js
 
 ### Demo
-This demo is deployed on https://is-seo-dynamic-routing-0.herokuapp.com/
+This demo is deployed on https://is-seo-dynamic-routing-0b.herokuapp.com/
 This demo get automatically deployed every time you merge to master.
 
 ### Run this for development

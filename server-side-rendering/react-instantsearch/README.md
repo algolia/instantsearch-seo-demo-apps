@@ -1,21 +1,16 @@
 # Server-Side Rendering with React InstantSearch
 
-_This project was generated with [create-instantsearch-app](https://github.com/algolia/create-instantsearch-app) by [Algolia](https://algolia.com)._
+This demo is deployed on https://is-seo-ssr-react-0.herokuapp.com/
+
+This demo get automatically deployed every time you merge to master.
 
 ## Get started
 
 To run this project locally, install the dependencies and run the local server:
 
 ```sh
-npm install
-npm start
-```
-
-Alternatively, you may use [Yarn](https://http://yarnpkg.com/):
-
-```sh
 yarn
-yarn start
+yarn dev
 ```
 
 Open http://localhost:3000 to see your app.
