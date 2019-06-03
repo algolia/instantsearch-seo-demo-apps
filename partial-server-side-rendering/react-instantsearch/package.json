@@ -1,0 +1,53 @@
+{
+  "name": "ssr-react-instantsearch",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/server",
+  "scripts": {
+    "install": "composer install",
+    "dev": "composer run dev --timeout=0 & parcel watch src/client.tsx",
+    "build": "parcel build src/client.tsx",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "dependencies": {
+    "algoliasearch": "3.30.0",
+    "history": "4.9.0",
+    "qs": "6.7.0",
+    "react": "16.6.3",
+    "react-dom": "16.6.3",
+    "react-instantsearch-core": "5.6.0",
+    "react-instantsearch-dom": "5.6.0",
+    "react-router-dom": "5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
+    "@babel/preset-env": "7.4.5",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@types/qs": "6.5.3",
+    "@types/react": "16.8.18",
+    "@types/react-dom": "16.8.4",
+    "@types/react-instantsearch-dom": "5.2.4",
+    "@types/react-router-dom": "4.3.3",
+    "@typescript-eslint/eslint-plugin": "1.9.0",
+    "@typescript-eslint/parser": "1.9.0",
+    "babel-eslint": "10.0.1",
+    "eslint": "5.16.0",
+    "eslint-config-algolia": "13.3.0",
+    "eslint-config-prettier": "4.3.0",
+    "eslint-plugin-import": "2.17.2",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-react": "7.11.1",
+    "parcel-bundler": "1.12.3",
+    "prettier": "1.16.4",
+    "typescript": "3.4.5"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+
+    <link rel="manifest" href="./dist/manifest.webmanifest" />
+    <link rel="shortcut icon" href="./dist/favicon.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css"
+    />
+    <link rel="stylesheet" href="./dist/index.css" />
+    <link rel="stylesheet" href="./dist/app.css" />
+
+    <title>instantsearch.js</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header-title">
+        <a href="/">Partial Server-Side Rendering</a>
+      </h1>
+      <p class="header-subtitle">
+        using
+        <a href="https://www.algolia.com/doc/api-reference/widgets/react/">
+          React InstantSearch
+        </a>
+        and PHP
+      </p>
+    </header>
+
+    <div class="container">
+      <div class="search-panel">
+        <div class="search-panel__results">
+          <div id="menu"></div>
+          <div id="searchbox"></div>
+          <div class="ais-Hits">
+            <ul class="ais-Hits-list">
+              <?php foreach ($results['hits'] as $hit) { ?>
+              <li class="ais-Hits-item">
+                <article>
+                  <h1>
+                    <span class="ais-Highlight">
+                      <?=$hit['_highlightResult']['name']['value']?>
+                    </span>
+                  </h1>
+                  <p>
+                    <span class="ais-Highlight">
+                      <?=$hit['_highlightResult']['description']['value']?>
+                    </span>
+                  </p>
+                  <p><?=$hit['brand']?></p>
+                </article>
+              </li>
+              <?php } ?>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="pagination"></div>
+    </div>
+
+    <script>
+      window.__APP_INITIAL_STATE__ = <?=json_encode($results)?>
+    </script>
+    <script src="./dist/client.js"></script>
+  </body>
+</html>

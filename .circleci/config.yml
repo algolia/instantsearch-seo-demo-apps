@@ -4,6 +4,9 @@ executors:
   node9:
     docker:
       - image: circleci/node:9
+  php7:
+    docker:
+      - image: circleci/php:7.2.17-node
 
 commands:
   build_project:
@@ -66,6 +69,21 @@ jobs:
           path: "server-side-rendering/react-instantsearch"
           app_name: "is-seo-ssr-react-0"
 
+  build_partial_server_side_rendering:
+    executor: php7
+    steps:
+      - checkout
+      - build_project:
+          path: "partial-server-side-rendering/react-instantsearch"
+
+  deploy_partial_server_side_rendering:
+    executor: php7
+    steps:
+      - checkout
+      - deploy_project:
+          path: "partial-server-side-rendering/react-instantsearch"
+          app_name: "is-seo-pssr-react-0"
+
   build_client_side_rendering_js:
     executor: node9
     steps:
@@ -111,6 +129,13 @@ workflows:
       - deploy_server_side_rendering:
           requires:
             - build_server_side_rendering
+          filters:
+            branches:
+              only: master
+      - build_partial_server_side_rendering
+      - deploy_partial_server_side_rendering:
+          requires:
+            - build_partial_server_side_rendering
           filters:
             branches:
               only: master
