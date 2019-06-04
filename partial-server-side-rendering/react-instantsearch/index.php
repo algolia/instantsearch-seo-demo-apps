@@ -26,6 +26,15 @@ $searchParameters = array(
 
 $results = $index->search($searchParameters['query'], $searchParameters);
 
+$initialState = array(
+  'resultsState' => array(
+    'state' => $searchParameters,
+    '_originalResponse' => array(
+      'results' => [$results]
+    )
+  )
+);
+
 require 'src/template.html';
 
 ?>
