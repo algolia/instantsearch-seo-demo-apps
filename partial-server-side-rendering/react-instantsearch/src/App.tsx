@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import qs from 'qs';
 import { createInstantSearch } from 'react-instantsearch-dom/server';
+import algoliasearch from 'algoliasearch/lite';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
 import { SearchBox, Menu, Hits, InfiniteHits } from './widgets';
 import { Location } from 'history';
@@ -18,6 +19,11 @@ const searchStateToUrl = (props: Props, searchState: any): string =>
 const urlToSearchState = (location: Location): object =>
   qs.parse(location.search.slice(1));
 
+const searchClient = algoliasearch(
+  'latency',
+  '6be0576ff61c053d5f9a3225e2a90f76'
+);
+
 export class App extends Component<Props> {
   private onSearchStateChange = (searchState: any) => {
     this.props.history.push(
@@ -29,8 +35,7 @@ export class App extends Component<Props> {
   public render(): React.ReactNode {
     return (
       <InstantSearch
-        appId="latency"
-        apiKey="6be0576ff61c053d5f9a3225e2a90f76"
+        searchClient={searchClient}
         indexName="instant_search"
         resultsState={this.props.resultsState}
         searchState={urlToSearchState(this.props.location)}
