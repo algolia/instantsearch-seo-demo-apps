@@ -1,0 +1,12 @@
+{
+  "name": "algolia/is-seo-pssr-php-0",
+  "description": "Partial Server-Side Rendering with PHP",
+  "type": "project",
+  "license": "MIT",
+  "scripts": {
+    "dev": "php -S localhost:3000"
+  },
+  "require": {
+    "algolia/algoliasearch-client-php": "^2.2"
+  }
+}
