@@ -114,6 +114,21 @@ jobs:
           path: "client-side-rendering/react-instantsearch"
           app_name: "is-seo-csr-react-0"
 
+  build_client_side_rendering_angular:
+    executor: node9
+    steps:
+      - checkout
+      - build_project:
+          path: "client-side-rendering/angular-instantsearch"
+
+  deploy_client_side_rendering_angular:
+    executor: node9
+    steps:
+      - checkout
+      - deploy_project:
+          path: "client-side-rendering/angular-instantsearch"
+          app_name: "is-seo-csr-angular-0"
+
 workflows:
   version: 2.1
   build:
@@ -150,6 +165,13 @@ workflows:
       - deploy_client_side_rendering_react:
           requires:
             - build_client_side_rendering_react
+          filters:
+            branches:
+              only: master
+      - build_client_side_rendering_angular
+      - deploy_client_side_rendering_angular:
+          requires:
+            - build_client_side_rendering_angular
           filters:
             branches:
               only: master
