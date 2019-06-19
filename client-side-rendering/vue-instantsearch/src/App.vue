@@ -133,10 +133,6 @@ em {
   display: flex;
 }
 
-.search-panel__filters {
-  flex: 1;
-}
-
 .search-panel__results {
   flex: 3;
 }
