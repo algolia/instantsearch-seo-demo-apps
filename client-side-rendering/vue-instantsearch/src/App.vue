@@ -6,9 +6,9 @@
       </h1>
       <p class="header-subtitle">
         using
-        <a href="https://www.algolia.com/doc/api-reference/widgets/vue/"
-          >Vue InstantSearch</a
-        >
+        <a href="https://www.algolia.com/doc/api-reference/widgets/vue/">
+          Vue InstantSearch
+        </a>
       </p>
     </header>
 
