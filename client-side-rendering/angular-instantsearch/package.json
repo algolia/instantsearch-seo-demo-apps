@@ -1,0 +1,38 @@
+{
+  "name": "csr-angular-instantsearch",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "ng serve --port 3000",
+    "build": "ng build --prod",
+    "lint": "eslint --ext .js,.ts,.tsx .",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "0.13.9",
+    "@angular/cli": "7.3.9",
+    "@angular/compiler": "7.2.15",
+    "@angular/compiler-cli": "7.2.15",
+    "@typescript-eslint/eslint-plugin": "1.9.0",
+    "@typescript-eslint/parser": "1.9.0",
+    "babel-eslint": "10.0.1",
+    "eslint": "5.16.0",
+    "eslint-config-algolia": "13.3.0",
+    "eslint-config-prettier": "4.3.0",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-prettier": "3.1.0",
+    "prettier": "1.18.1",
+    "typescript": "3.2.4"
+  },
+  "dependencies": {
+    "@angular/common": "7.2.15",
+    "@angular/core": "7.2.15",
+    "@angular/platform-browser": "7.2.15",
+    "@angular/platform-browser-dynamic": "7.2.15",
+    "angular-instantsearch": "3.0.0-beta.2",
+    "core-js": "2.6.9",
+    "instantsearch.js": "3.5.3",
+    "rxjs": "6.5.2",
+    "zone.js": "0.8.29"
+  }
+}
