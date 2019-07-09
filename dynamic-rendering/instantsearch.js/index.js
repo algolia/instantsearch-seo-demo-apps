@@ -11,6 +11,14 @@ app.use(
   })
 );
 
+
+app.get('/robots.txt', (req, res, next) => {
+  res.sendFile('./robots.txt', {root: __dirname}, err => {
+    if (err) return next(err);
+  });
+});
+
+app.use('/sitemaps', express.static('sitemaps'));
 app.use(express.static('dist'));
 
 const port = process.env.PORT || 3000;
