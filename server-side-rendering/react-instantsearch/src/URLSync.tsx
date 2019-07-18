@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { configureRouting } from './URLSyncHelper';
+import { configureParameter, configureRouting } from './URLSyncHelper';
 import { AppProps } from './App';
 
 const updateAfter = 700;
 
-const ROUTING = configureRouting();
+const ROUTING = configureRouting({
+  query: configureParameter('query'),
+  page: configureParameter('page'),
+  free_shipping: configureParameter('toggle.free_shipping'),
+  brands: configureParameter('refinementList.brand'),
+  category: configureParameter([
+    'hierarchicalMenu',
+    'hierarchicalCategories.lvl0',
+  ]),
+});
 
 const withURLSync = (App: React.ComponentType<AppProps>) =>
   class WithURLSync extends Component<
@@ -17,7 +26,10 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
     constructor(props: any) {
       super(props);
       this.state = {
-        searchState: ROUTING.urlToSearchState(props.location),
+        searchState: ROUTING.urlToSearchState(
+          props.location.pathname,
+          props.location.search
+        ),
       };
     }
 
