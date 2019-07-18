@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { configureParameter, configureRouting } from './URLSyncHelper';
 import { AppProps } from './App';
+import { Helmet } from 'react-helmet';
 
 const updateAfter = 700;
 
@@ -12,6 +13,12 @@ const ROUTING = configureRouting({
   category: configureParameter([
     'hierarchicalMenu',
     'hierarchicalCategories.lvl0',
+  ]),
+  sortBy: configureParameter([
+    'sortBy',
+  ]),
+  hitsPerPage: configureParameter([
+    'hitsPerPage',
   ]),
 });
 
@@ -65,12 +72,18 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
       const { searchState } = this.state;
 
       return (
-        <App
-          {...this.props}
-          searchState={searchState}
-          onSearchStateChange={this.onSearchStateChange}
-          createURL={ROUTING.searchStateToURL}
-        />
+        <>
+          <Helmet>
+            <title> {ROUTING.searchStateToTitle(searchState)} | Algolia E-Commerce demo</title>
+            <link rel="canonical" href={ROUTING.searchStateToCanonicalUrl(searchState)} />
+          </Helmet>
+          <App
+            {...this.props}
+            searchState={searchState}
+            onSearchStateChange={this.onSearchStateChange}
+            createURL={ROUTING.searchStateToURL}
+          />
+        </>
       );
     }
   };

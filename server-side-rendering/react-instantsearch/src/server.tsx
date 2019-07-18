@@ -12,6 +12,7 @@ import path from 'path';
 import { AddressInfo } from 'net';
 
 import { App, findResultsState } from './App';
+import { Helmet } from 'react-helmet';
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.get('*', async (req, res) => {
   const resultsState = await findResultsState(Root, { location: req.url });
   const initialState = { resultsState };
 
+  const helmet = Helmet.renderStatic();
   res.write(`
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +55,9 @@ app.get('*', async (req, res) => {
     <link rel="stylesheet" href="/static/App.css">
     <link rel="stylesheet" href="/static/App.mobile.css">
 
-    <title>React InstantSearch</title>
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
+    ${helmet.link.toString()}
   </head>
 
   <body>
