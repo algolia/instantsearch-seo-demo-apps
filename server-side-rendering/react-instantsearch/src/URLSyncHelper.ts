@@ -22,7 +22,6 @@ export const configureParameter = (path: string | string[]) => {
 
   let widgetType = Array.isArray(path) ? path[0] : path.split('.')[0];
   switch (widgetType) {
-
     case 'hierarchicalMenu':
       stateToString = (refinement: string | undefined): string | undefined => {
         if (!refinement) return undefined;
@@ -30,7 +29,7 @@ export const configureParameter = (path: string | string[]) => {
         return categories.join('/');
       };
       stringToState = (
-        refinement: string | undefined,
+        refinement: string | undefined
       ): string[] | undefined => {
         if (!refinement) return undefined;
         return refinement.split('/').map(getCategoryName);
@@ -114,7 +113,7 @@ export const configureRouting = (mapping: {
     const hierarchicalMenu = {
       'hierarchicalCategories.lvl0': `${
         category ? getCategoryName(category) : ''
-        }${subcategory ? ' > ' + getCategoryName(subcategory) : ''}`,
+      }${subcategory ? ' > ' + getCategoryName(subcategory) : ''}`,
     };
     return {
       hierarchicalMenu,
