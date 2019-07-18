@@ -1,3 +1,5 @@
+import get from 'lodash.get';
+import set from 'lodash.set';
 import qs from 'qs';
 
 function getCategorySlug(name: string) {
@@ -14,69 +16,112 @@ function getCategoryName(slug: string) {
     .join(' ');
 }
 
-export const configureRouting = () => {
-  const createURL = (state: any) => {
-    const isDefaultRoute =
-      !state.query &&
-      state.page === 1 &&
-      (state.refinementList && state.refinementList.brand.length === 0) &&
-      (state.hierarchicalMenu &&
-        !state.hierarchicalMenu['hierarchicalCategories.lvl0']);
+export const configureParameter = (path: string | string[]) => {
+  let stringToState: Function;
+  let stateToString: Function;
 
-    if (isDefaultRoute) {
-      return '';
+  const widgetType = Array.isArray(path) ? path[0] : path.split('.')[0];
+  switch (widgetType) {
+    case 'hierarchicalMenu':
+      stateToString = (refinement: string | undefined): string | undefined => {
+        if (!refinement) return undefined;
+        const categories = refinement.split(/\s*>\s*/).map(getCategorySlug);
+        return categories.join('/');
+      };
+      stringToState = (
+        refinement: string | undefined
+      ): string[] | undefined => {
+        if (!refinement) return undefined;
+        return refinement.split('/').map(getCategoryName);
+      };
+      break;
+
+    case 'refinementList':
+      stateToString = (refinements: string[] | undefined): string | undefined =>
+        refinements && refinements.length ? refinements.join('-') : undefined;
+      stringToState = (refinements: string | undefined): string[] =>
+        refinements ? refinements.split('-') : [];
+      break;
+
+    case 'toggle':
+      stateToString = (refinement: boolean | undefined): string | undefined =>
+        refinement ? String(refinement) : undefined;
+      stringToState = (refinement: string | undefined): boolean =>
+        refinement === 'true';
+      break;
+
+    default:
+      stringToState = (refinement: string | undefined): string | undefined =>
+        refinement;
+      stateToString = (refinement: string | undefined): string | undefined =>
+        refinement;
+  }
+  return {
+    path,
+    widgetType,
+    stringToState,
+    stateToString,
+  };
+};
+export const configureRouting = (mapping: {
+  [s: string]: {
+    path: string | string[];
+    widgetType: string;
+    stringToState: Function;
+    stateToString: Function;
+  };
+}) => {
+  const stateToQueryString = (searchState: any, encoder?: Function) => {
+    const output = {};
+    for (const [queryParam, statePropertyConfig] of Object.entries(mapping)) {
+      const value = get(searchState, statePropertyConfig.path);
+      set(output, queryParam, statePropertyConfig.stateToString(value));
     }
-
-    const categoryPath = state.hierarchicalMenu['hierarchicalCategories.lvl0']
-      ? `${getCategorySlug(
-          state.hierarchicalMenu['hierarchicalCategories.lvl0']
-        )}/`
-      : '';
-    const queryParameters: any = {};
-
-    if (state.query) {
-      queryParameters.query = encodeURIComponent(state.query);
+    if (encoder) {
+      return encoder(output);
+    } else {
+      return qs.stringify(output);
     }
-    if (state.page !== 1) {
-      queryParameters.page = state.page;
-    }
-    if (state.refinementList.brand) {
-      queryParameters.brands = state.refinementList.brand.map(
-        encodeURIComponent
-      );
-    }
-
-    const queryString = qs.stringify(queryParameters, {
-      addQueryPrefix: true,
-      arrayFormat: 'repeat',
-    });
-
-    return `/${categoryPath}${queryString}`;
   };
 
-  const searchStateToURL = (searchState: any) =>
-    searchState ? createURL(searchState) : '';
+  const queryStringToState = (queryString: string) => {
+    const queryParams = qs.parse(queryString);
 
-  const urlToSearchState = (location: any) => {
-    const pathnameMatches = location.pathname.match(/\/(.*?)\/?$/);
-    const category = getCategoryName(
-      (pathnameMatches && pathnameMatches[1]) || ''
-    );
-    const { query = '', page = 1, brands = [] } = qs.parse(
-      location.search.slice(1)
-    );
-    // `qs` does not return an array when there's a single value.
-    const allBrands = Array.isArray(brands) ? brands : [brands].filter(Boolean);
+    const output = {};
+    for (const [queryParamPath, statePropertyConfig] of Object.entries(
+      mapping
+    )) {
+      let value = get(queryParams, queryParamPath);
+      value = statePropertyConfig.stringToState(value);
+      if (value) {
+        set(output, statePropertyConfig.path, value);
+      }
+    }
+    return output;
+  };
 
+  const searchStateToURL = (searchState: any) => {
+    if (!searchState) return '';
+    return stateToQueryString(searchState, (queryObject: any) => {
+      const { category, ...rest } = queryObject;
+      if (category)
+        return `/${category}/${qs.stringify(rest, { addQueryPrefix: true })}`;
+      return `/${qs.stringify(rest, { addQueryPrefix: true })}`;
+    });
+  };
+
+  const urlToSearchState = (pathname: string, search: string) => {
+    const [category, subcategory]: string[] = pathname.slice(1).split('/');
+
+    const hierarchicalMenu = {
+      'hierarchicalCategories.lvl0': `${
+        category ? getCategoryName(category) : ''
+      }${subcategory ? ` > ${getCategoryName(subcategory)}` : ''}`,
+    };
+    console.log(queryStringToState(search.slice(1)));
     return {
-      query: decodeURIComponent(query),
-      page,
-      hierarchicalMenu: {
-        'hierarchicalCategories.lvl0': category,
-      },
-      refinementList: {
-        brand: allBrands.map(decodeURIComponent),
-      },
+      hierarchicalMenu,
+      ...queryStringToState(search.slice(1)),
     };
   };
 
