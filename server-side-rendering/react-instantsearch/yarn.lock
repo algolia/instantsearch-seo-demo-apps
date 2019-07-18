@@ -1148,6 +1148,15 @@ ajv@^6.1.0, ajv@^6.9.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+algolia-sitemap@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/algolia-sitemap/-/algolia-sitemap-2.2.0.tgz#0ee471d2480a6fc52b21b4e5fe57a59dd6b40141"
+  integrity sha512-D1nSdHPO2u4h8s7s2yjVHyHe4u/Q9wDrahQ2iJt2CPSTcU+iDt6WQ5HkxnXMG6ksqXzqj3A3B/fXaNB+nvzGDg==
+  dependencies:
+    algoliasearch "^3.26.0"
+    jsx-string "^2.0.0"
+    validator "^10.0.0"
+
 algoliasearch-helper@^2.26.0:
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-2.28.0.tgz#1cafa7fcd02c15e9411c4d1778e9a4e89581916d"
@@ -1178,7 +1187,7 @@ algoliasearch@3.30.0:
     semver "^5.1.0"
     tunnel-agent "^0.6.0"
 
-algoliasearch@^3.27.1:
+algoliasearch@^3.26.0, algoliasearch@^3.27.1:
   version "3.33.0"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.33.0.tgz#83b541124ebb0db54643009d4e660866b3177cdf"
   integrity sha512-9DaVmOd7cvcZeYyV0BWAeJHVWJmgOL2DNUEBY/DTR4MzD1wCWs4Djl7LAlfvkGwGBdRHZCG+l0HA1572w3T8zg==
@@ -2257,7 +2266,7 @@ es6-promise@^4.1.0:
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.6.tgz#b685edd8258886365ea62b57d30de28fadcd974f"
   integrity sha512-aRVgGdnmW2OiySVPUC9e6m+plolMAJKjZnQlCwNSuK5yQ0JN61DZSO1X1Ufd1foqWRAlig0rhduTCHe7sVtK5Q==
 
-escape-html@~1.0.3:
+escape-html@^1.0.3, escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
@@ -3489,6 +3498,13 @@ jsx-ast-utils@^2.0.1:
   integrity sha512-yDGDG2DS4JcqhA6blsuYbtsT09xL8AoLuUR2Gb5exrw7UEM19sBcOTq+YBBhrNbl0PUC4R4LnFu+dHg2HKeVvA==
   dependencies:
     array-includes "^3.0.3"
+
+jsx-string@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jsx-string/-/jsx-string-2.0.0.tgz#db09239d0a8159a23484e79199ce42f19a559e23"
+  integrity sha1-2wkjnQqBWaI0hOeRmc5C8ZpVniM=
+  dependencies:
+    escape-html "^1.0.3"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
@@ -5765,6 +5781,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+validator@^10.0.0:
+  version "10.11.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-10.11.0.tgz#003108ea6e9a9874d31ccc9e5006856ccd76b228"
+  integrity sha512-X/p3UZerAIsbBfN/IwahhYaBbY68EN/UQBWHtsbXGT5bfrH/p4NQzUCG1kF/rtKaNpnJ7jAu6NGTdSNtyNIXMw==
 
 value-equal@^0.4.0:
   version "0.4.0"

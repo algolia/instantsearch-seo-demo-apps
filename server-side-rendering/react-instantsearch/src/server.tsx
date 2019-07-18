@@ -37,8 +37,8 @@ const Root = ({ resultsState, location }: Props): JSX.Element => (
 app.get('*', async (req, res) => {
   const resultsState = await findResultsState(Root, { location: req.url });
   const initialState = { resultsState };
-
   const helmet = Helmet.renderStatic();
+
   res.write(`
 <!DOCTYPE html>
 <html lang="en">

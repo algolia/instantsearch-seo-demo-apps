@@ -1,0 +1,2 @@
+Sitemap: https://is-seo-ssr-react-0.herokuapp.com/static/sitemaps/sitemap-index.xml
+
