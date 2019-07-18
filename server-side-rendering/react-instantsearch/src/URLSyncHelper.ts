@@ -118,7 +118,6 @@ export const configureRouting = (mapping: {
         category ? getCategoryName(category) : ''
       }${subcategory ? ` > ${getCategoryName(subcategory)}` : ''}`,
     };
-    console.log(queryStringToState(search.slice(1)));
     return {
       hierarchicalMenu,
       ...queryStringToState(search.slice(1)),
