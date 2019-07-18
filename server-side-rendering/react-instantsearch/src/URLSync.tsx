@@ -14,12 +14,8 @@ const ROUTING = configureRouting({
     'hierarchicalMenu',
     'hierarchicalCategories.lvl0',
   ]),
-  sortBy: configureParameter([
-    'sortBy',
-  ]),
-  hitsPerPage: configureParameter([
-    'hitsPerPage',
-  ]),
+  sortBy: configureParameter(['sortBy']),
+  hitsPerPage: configureParameter(['hitsPerPage']),
 });
 
 const withURLSync = (App: React.ComponentType<AppProps>) =>
@@ -74,8 +70,11 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
       return (
         <>
           <Helmet>
-            <title> {ROUTING.searchStateToTitle(searchState)} | Algolia E-Commerce demo</title>
-            <link rel="canonical" href={ROUTING.searchStateToCanonicalUrl(searchState)} />
+            <title>{ROUTING.searchStateToTitle(searchState)}</title>
+            <link
+              rel="canonical"
+              href={ROUTING.searchStateToCanonicalUrl(searchState)}
+            />
           </Helmet>
           <App
             {...this.props}
