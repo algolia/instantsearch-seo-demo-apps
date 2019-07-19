@@ -22,12 +22,12 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
     }
 
     componentDidMount() {
-      (window as any).addEventListener('popstate', this.onPopState);
+      window.addEventListener('popstate', this.onPopState);
     }
 
     componentWillUnmount() {
       clearTimeout(this.debouncedSetState);
-      (window as any).removeEventListener('popstate', this.onPopState);
+      window.removeEventListener('popstate', this.onPopState);
     }
 
     onPopState = ({ state }: { state: any }) =>
@@ -39,9 +39,9 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
       clearTimeout(this.debouncedSetState);
 
       this.debouncedSetState = setTimeout(() => {
-        (window as any).history.pushState(
+        window.history.pushState(
           searchState,
-          null,
+          '',
           ROUTING.searchStateToURL(searchState)
         );
       }, updateAfter);
