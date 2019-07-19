@@ -72,7 +72,7 @@ export const configureRouting = () => {
       query: decodeURIComponent(query),
       page,
       hierarchicalMenu: {
-        categories: decodeURIComponent(category),
+        'hierarchicalCategories.lvl0': category,
       },
       refinementList: {
         brand: allBrands.map(decodeURIComponent),
