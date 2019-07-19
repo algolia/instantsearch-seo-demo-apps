@@ -12,30 +12,30 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
   > {
     private debouncedSetState: any;
 
-    state: Readonly<{ searchState: any }>;
+    public state: Readonly<{ searchState: any }>;
 
-    constructor(props: any) {
+    private constructor(props: any) {
       super(props);
       this.state = {
         searchState: ROUTING.urlToSearchState(props.location),
       };
     }
 
-    componentDidMount() {
+    public componentDidMount() {
       window.addEventListener('popstate', this.onPopState);
     }
 
-    componentWillUnmount() {
+    public componentWillUnmount() {
       clearTimeout(this.debouncedSetState);
       window.removeEventListener('popstate', this.onPopState);
     }
 
-    onPopState = ({ state }: { state: any }) =>
+    private onPopState = ({ state }: { state: any }) =>
       this.setState({
         searchState: state || {},
       });
 
-    onSearchStateChange = (searchState: any) => {
+    public onSearchStateChange = (searchState: any) => {
       clearTimeout(this.debouncedSetState);
 
       this.debouncedSetState = setTimeout(() => {
@@ -49,7 +49,7 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
       this.setState({ searchState });
     };
 
-    render() {
+    public render() {
       const { searchState } = this.state;
 
       return (

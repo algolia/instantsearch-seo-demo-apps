@@ -20,14 +20,17 @@ export const configureRouting = () => {
       !state.query &&
       state.page === 1 &&
       (state.refinementList && state.refinementList.brand.length === 0) &&
-      (state.hierarchicalMenu && !state.hierarchicalMenu['hierarchicalCategories.lvl0']);
+      (state.hierarchicalMenu &&
+        !state.hierarchicalMenu['hierarchicalCategories.lvl0']);
 
     if (isDefaultRoute) {
       return '';
     }
 
     const categoryPath = state.hierarchicalMenu['hierarchicalCategories.lvl0']
-      ? `${getCategorySlug(state.hierarchicalMenu['hierarchicalCategories.lvl0'])}/`
+      ? `${getCategorySlug(
+          state.hierarchicalMenu['hierarchicalCategories.lvl0']
+        )}/`
       : '';
     const queryParameters: any = {};
 
