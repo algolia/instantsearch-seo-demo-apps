@@ -2,6 +2,7 @@
 
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const CopyPlugin = require('copy-webpack-plugin');
 
 /*
  * Configure the environment
@@ -58,6 +59,7 @@ module.exports = [
         },
       ],
     },
+    plugins: [new CopyPlugin([{ from: './src/assets', to: './' }])],
   },
   /*
    * Server entrypoint
@@ -114,5 +116,6 @@ module.exports = [
         },
       ],
     },
+    plugins: [new CopyPlugin([{ from: './src/assets', to: './static' }])],
   },
 ];
