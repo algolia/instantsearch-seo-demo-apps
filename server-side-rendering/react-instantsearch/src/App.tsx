@@ -47,6 +47,7 @@ export class AppComponent extends Component<AppProps> {
           <p className="header-logo">
             <AlgoliaSvg />
           </p>
+          <p className="header-title"> Stop looking for an item — find it. </p>
           <SearchBox
             translations={{
               placeholder: 'Product, brand, color, …',

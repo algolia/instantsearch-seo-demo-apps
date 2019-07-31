@@ -73,24 +73,24 @@ export const configureRouting = (mapping: {
 }) => {
   const stateToQueryString = (searchState: any, encoder?: Function) => {
     const output = {};
+    const values = {};
     for (const [queryParam, statePropertyConfig] of Object.entries(mapping)) {
       const value = get(searchState, statePropertyConfig.path);
+      set(values, queryParam, value);
       set(output, queryParam, statePropertyConfig.stateToString(value));
     }
     if (encoder) {
-      return encoder(output);
+      return encoder(output, values);
     } else {
       return qs.stringify(output);
     }
   };
 
   const queryStringToState = (queryString: string) => {
-    const queryParams = qs.parse(queryString);
+    const queryParams = qs.parse(queryString, {});
 
     const output = {};
-    for (const [queryParamPath, statePropertyConfig] of Object.entries(
-      mapping
-    )) {
+    for (const [queryParamPath, statePropertyConfig] of Object.entries(mapping)) {
       let value = get(queryParams, queryParamPath);
       value = statePropertyConfig.stringToState(value);
       if (value) {
@@ -124,5 +124,34 @@ export const configureRouting = (mapping: {
     };
   };
 
-  return { urlToSearchState, searchStateToURL };
+  const searchStateToCanonicalUrl = (searchState: any) => {
+    if (!searchState) return '/';
+    return stateToQueryString(searchState, (queryObject: any) => {
+      const { category } = queryObject;
+      if (category) return `/${category}/`;
+      return '/';
+    });
+  };
+
+  const searchStateToTitle = (searchState: any) => {
+    if (!searchState) return '/';
+    return stateToQueryString(searchState, (_queryObject: any, values: any) => {
+      let { category } = values;
+      if (!category) return `Algolia Store`;
+      // title needs to be <subcategory> | <category> | Algolia Store
+      // similar to the one found on https://www.lacoste.com/gb/lacoste/men/clothing/trousers-shorts/
+      category = category
+        .split(/\s+>\s+/)
+        .reverse()
+        .join(' | ');
+      return `${category} | Algolia Store`;
+    });
+  };
+
+  return {
+    urlToSearchState,
+    searchStateToURL,
+    searchStateToCanonicalUrl,
+    searchStateToTitle,
+  };
 };
