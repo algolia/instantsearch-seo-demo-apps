@@ -8,6 +8,7 @@ const updateAfter = 700;
 const ROUTING = configureRouting({
   query: configureParameter('query'),
   page: configureParameter('page'),
+  // eslint-disable-next-line @typescript-eslint/camelcase
   free_shipping: configureParameter('toggle.free_shipping'),
   brands: configureParameter('refinementList.brand'),
   category: configureParameter([
@@ -24,9 +25,9 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
   > {
     private debouncedSetState: any;
 
-    state: Readonly<{ searchState: any }>;
+    public state: Readonly<{ searchState: any }>;
 
-    constructor(props: any) {
+    private constructor(props: any) {
       super(props);
       this.state = {
         searchState: ROUTING.urlToSearchState(
@@ -36,27 +37,27 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
       };
     }
 
-    componentDidMount() {
-      (window as any).addEventListener('popstate', this.onPopState);
+    public componentDidMount() {
+      window.addEventListener('popstate', this.onPopState);
     }
 
-    componentWillUnmount() {
+    public componentWillUnmount() {
       clearTimeout(this.debouncedSetState);
-      (window as any).removeEventListener('popstate', this.onPopState);
+      window.removeEventListener('popstate', this.onPopState);
     }
 
-    onPopState = ({ state }: { state: any }) =>
+    private onPopState = ({ state }: { state: any }) =>
       this.setState({
         searchState: state || {},
       });
 
-    onSearchStateChange = (searchState: any) => {
+    public onSearchStateChange = (searchState: any) => {
       clearTimeout(this.debouncedSetState);
 
       this.debouncedSetState = setTimeout(() => {
-        (window as any).history.pushState(
+        window.history.pushState(
           searchState,
-          null,
+          '',
           ROUTING.searchStateToURL(searchState)
         );
       }, updateAfter);
@@ -64,7 +65,7 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
       this.setState({ searchState });
     };
 
-    render() {
+    public render() {
       const { searchState } = this.state;
 
       return (

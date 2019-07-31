@@ -20,7 +20,7 @@ export const configureParameter = (path: string | string[]) => {
   let stringToState: Function;
   let stateToString: Function;
 
-  let widgetType = Array.isArray(path) ? path[0] : path.split('.')[0];
+  const widgetType = Array.isArray(path) ? path[0] : path.split('.')[0];
   switch (widgetType) {
     case 'hierarchicalMenu':
       stateToString = (refinement: string | undefined): string | undefined => {
@@ -45,7 +45,7 @@ export const configureParameter = (path: string | string[]) => {
 
     case 'toggle':
       stateToString = (refinement: boolean | undefined): string | undefined =>
-        refinement ? refinement + '' : undefined;
+        refinement ? String(refinement) : undefined;
       stringToState = (refinement: string | undefined): boolean =>
         refinement === 'true';
       break;
@@ -74,7 +74,7 @@ export const configureRouting = (mapping: {
   const stateToQueryString = (searchState: any, encoder?: Function) => {
     const output = {};
     const values = {};
-    for (let [queryParam, statePropertyConfig] of Object.entries(mapping)) {
+    for (const [queryParam, statePropertyConfig] of Object.entries(mapping)) {
       const value = get(searchState, statePropertyConfig.path);
       set(values, queryParam, value);
       set(output, queryParam, statePropertyConfig.stateToString(value));
@@ -90,7 +90,7 @@ export const configureRouting = (mapping: {
     const queryParams = qs.parse(queryString, {});
 
     const output = {};
-    for (let [queryParamPath, statePropertyConfig] of Object.entries(mapping)) {
+    for (const [queryParamPath, statePropertyConfig] of Object.entries(mapping)) {
       let value = get(queryParams, queryParamPath);
       value = statePropertyConfig.stringToState(value);
       if (value) {
@@ -104,8 +104,9 @@ export const configureRouting = (mapping: {
     if (!searchState) return '';
     return stateToQueryString(searchState, (queryObject: any) => {
       const { category, ...rest } = queryObject;
-      if (category) return `/${category}/?${qs.stringify(rest)}`;
-      return '/?' + qs.stringify(rest);
+      if (category)
+        return `/${category}/${qs.stringify(rest, { addQueryPrefix: true })}`;
+      return `/${qs.stringify(rest, { addQueryPrefix: true })}`;
     });
   };
 
@@ -115,7 +116,7 @@ export const configureRouting = (mapping: {
     const hierarchicalMenu = {
       'hierarchicalCategories.lvl0': `${
         category ? getCategoryName(category) : ''
-      }${subcategory ? ' > ' + getCategoryName(subcategory) : ''}`,
+      }${subcategory ? ` > ${getCategoryName(subcategory)}` : ''}`,
     };
     return {
       hierarchicalMenu,
