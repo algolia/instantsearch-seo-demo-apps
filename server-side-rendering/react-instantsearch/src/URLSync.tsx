@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { configureRouting } from './URLSyncHelper';
+import { configureParameter, configureRouting } from './URLSyncHelper';
 import { AppProps } from './App';
+import { Helmet } from 'react-helmet';
 
 const updateAfter = 700;
 
-const ROUTING = configureRouting();
+const ROUTING = configureRouting({
+  query: configureParameter('query'),
+  page: configureParameter('page'),
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  free_shipping: configureParameter('toggle.free_shipping'),
+  brands: configureParameter('refinementList.brand'),
+  category: configureParameter([
+    'hierarchicalMenu',
+    'hierarchicalCategories.lvl0',
+  ]),
+  sortBy: configureParameter(['sortBy']),
+  hitsPerPage: configureParameter(['hitsPerPage']),
+});
 
 const withURLSync = (App: React.ComponentType<AppProps>) =>
   class WithURLSync extends Component<
@@ -17,7 +30,10 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
     private constructor(props: any) {
       super(props);
       this.state = {
-        searchState: ROUTING.urlToSearchState(props.location),
+        searchState: ROUTING.urlToSearchState(
+          props.location.pathname,
+          props.location.search
+        ),
       };
     }
 
@@ -53,12 +69,21 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
       const { searchState } = this.state;
 
       return (
-        <App
-          {...this.props}
-          searchState={searchState}
-          onSearchStateChange={this.onSearchStateChange}
-          createURL={ROUTING.searchStateToURL}
-        />
+        <>
+          <Helmet>
+            <title>{ROUTING.searchStateToTitle(searchState)}</title>
+            <link
+              rel="canonical"
+              href={ROUTING.searchStateToCanonicalUrl(searchState)}
+            />
+          </Helmet>
+          <App
+            {...this.props}
+            searchState={searchState}
+            onSearchStateChange={this.onSearchStateChange}
+            createURL={ROUTING.searchStateToURL}
+          />
+        </>
       );
     }
   };
