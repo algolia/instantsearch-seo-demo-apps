@@ -49,6 +49,7 @@ app.get('*', async (req, res) => {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
+    <meta name="google-site-verification" content="BTm9m08W7WVj-B9CutNldFFwQeXjA4gRcSfB82EWKsw">
 
     <link rel="manifest" href="/static/manifest.webmanifest">
     <link rel="shortcut icon" href="/static/favicon.png">
