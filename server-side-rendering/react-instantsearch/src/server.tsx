@@ -16,7 +16,10 @@ import { Helmet } from 'react-helmet';
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/static', express.static(path.join(__dirname, '../dist/static')));
+app.use('/robots.txt', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../dist/robots.txt'));
+});
 
 interface Props {
   resultsState: any;
@@ -37,8 +40,8 @@ const Root = ({ resultsState, location }: Props): JSX.Element => (
 app.get('*', async (req, res) => {
   const resultsState = await findResultsState(Root, { location: req.url });
   const initialState = { resultsState };
-
   const helmet = Helmet.renderStatic();
+
   res.write(`
 <!DOCTYPE html>
 <html lang="en">
