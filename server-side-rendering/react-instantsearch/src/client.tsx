@@ -6,7 +6,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
+import { App, AppProps } from './App';
 import { BrowserRouter, Route, RouteComponentProps } from 'react-router-dom';
 
 declare global {
@@ -15,11 +15,11 @@ declare global {
   }
 }
 
-interface Props {
-  resultsState: any;
-}
-
-const Root = ({ resultsState }: Props): JSX.Element => (
+const Root = ({
+  resultsState,
+}: {
+  resultsState: AppProps['resultsState'];
+}): JSX.Element => (
   <BrowserRouter>
     <Route
       path="/"
@@ -32,5 +32,5 @@ const Root = ({ resultsState }: Props): JSX.Element => (
 
 ReactDOM.hydrate(
   <Root resultsState={window.__APP_INITIAL_STATE__.resultsState} />,
-  document.querySelector('.container')
+  document.querySelector('#root')
 );

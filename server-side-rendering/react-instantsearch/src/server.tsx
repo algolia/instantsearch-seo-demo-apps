@@ -12,10 +12,14 @@ import path from 'path';
 import { AddressInfo } from 'net';
 
 import { App, findResultsState } from './App';
+import { Helmet } from 'react-helmet';
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/static', express.static(path.join(__dirname, '../dist/static')));
+app.use('/robots.txt', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../dist/robots.txt'));
+});
 
 interface Props {
   resultsState: any;
@@ -36,6 +40,7 @@ const Root = ({ resultsState, location }: Props): JSX.Element => (
 app.get('*', async (req, res) => {
   const resultsState = await findResultsState(Root, { location: req.url });
   const initialState = { resultsState };
+  const helmet = Helmet.renderStatic();
 
   res.write(`
 <!DOCTYPE html>
@@ -48,27 +53,18 @@ app.get('*', async (req, res) => {
     <link rel="manifest" href="/static/manifest.webmanifest">
     <link rel="shortcut icon" href="/static/favicon.png">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
-    <link rel="stylesheet" href="/static/index.css">
-    <link rel="stylesheet" href="/static/app.css">
+    <link rel="stylesheet" href="/static/reset-min.css">
+    <link rel="stylesheet" href="/static/Theme.css">
+    <link rel="stylesheet" href="/static/App.css">
+    <link rel="stylesheet" href="/static/App.mobile.css">
 
-    <title>React InstantSearch</title>
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
+    ${helmet.link.toString()}
   </head>
 
   <body>
-    <header class="header">
-      <h1 class="header-title">
-        <a href="/">Server-Side Rendering</a>
-      </h1>
-      <p class="header-subtitle">
-        using
-        <a href="https://www.algolia.com/doc/api-reference/widgets/react/">
-          React InstantSearch
-        </a>
-      </p>
-    </header>
-
-    <div class="container">`);
+    <div id="root">`);
 
   const appStream = renderToNodeStream(
     <Root resultsState={resultsState} location={req.url} />
