@@ -60,7 +60,6 @@ jobs:
 
   build_server_side_rendering:
     executor: node12
-    resource_class: xlarge
     steps:
       - checkout
       - build_project:
@@ -68,7 +67,6 @@ jobs:
 
   deploy_server_side_rendering:
     executor: node12
-    resource_class: xlarge
     steps:
       - checkout
       - deploy_project:
