@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "parcel index.html --port 3000",
     "build": "parcel build index.html",
-    "lint": "eslint .",
+    "lint": "eslint --ext .js,.ts,.tsx .",
     "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {

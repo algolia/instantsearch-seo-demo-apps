@@ -619,7 +619,7 @@ algoliasearch-helper@^2.26.0, algoliasearch-helper@^2.26.1:
     lodash "^4.17.5"
     qs "^6.5.1"
 
-algoliasearch@^3.29.0:
+algoliasearch@3.33.0, algoliasearch@^3.29.0:
   version "3.33.0"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.33.0.tgz#83b541124ebb0db54643009d4e660866b3177cdf"
   integrity sha512-9DaVmOd7cvcZeYyV0BWAeJHVWJmgOL2DNUEBY/DTR4MzD1wCWs4Djl7LAlfvkGwGBdRHZCG+l0HA1572w3T8zg==
