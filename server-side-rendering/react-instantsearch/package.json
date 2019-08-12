@@ -10,7 +10,8 @@
     "lint": "eslint --ext .js,.ts,.tsx .",
     "lint:fix": "npm run lint -- --fix",
     "type-check": "tsc",
-    "type-check:watch": "yarn type-check -- --watch"
+    "type-check:watch": "yarn type-check -- --watch",
+    "generate-lighthouse-report": "lighthouse http://localhost:3000 --only-categories=seo --output-path=./dist/lighthouse-report.html"
   },
   "dependencies": {
     "algoliasearch": "3.30.0",
@@ -59,6 +60,7 @@
     "eslint-plugin-import": "2.17.2",
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "7.11.1",
+    "lighthouse": "^5.2.0",
     "nodemon": "1.19.0",
     "prettier": "1.16.4",
     "typescript": "3.5.3",
