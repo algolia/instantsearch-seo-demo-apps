@@ -7,7 +7,7 @@
     "install": "composer install",
     "dev": "composer run dev --timeout=0 & parcel watch src/client.tsx",
     "build": "parcel build src/client.tsx",
-    "lint": "eslint .",
+    "lint": "eslint --ext .js,.ts,.tsx .",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {

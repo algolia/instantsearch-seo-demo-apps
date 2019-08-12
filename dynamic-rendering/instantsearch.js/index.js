@@ -11,10 +11,10 @@ app.use(
   })
 );
 
-
 app.get('/robots.txt', (req, res, next) => {
-  res.sendFile('./robots.txt', {root: __dirname}, err => {
+  res.sendFile('./robots.txt', { root: __dirname }, err => {
     if (err) return next(err);
+    return null;
   });
 });
 
