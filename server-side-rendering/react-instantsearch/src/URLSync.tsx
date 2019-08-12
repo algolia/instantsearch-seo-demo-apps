@@ -72,6 +72,10 @@ const withURLSync = (App: React.ComponentType<AppProps>) =>
         <>
           <Helmet>
             <title>{ROUTING.searchStateToTitle(searchState)}</title>
+            <meta
+              name="description"
+              content={ROUTING.searchStateToDescription(searchState)}
+            />
             <link
               rel="canonical"
               href={ROUTING.searchStateToCanonicalUrl(searchState)}

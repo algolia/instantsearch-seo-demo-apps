@@ -134,7 +134,7 @@ export const configureRouting = (mapping: {
   };
 
   const searchStateToTitle = (searchState: any) => {
-    if (!searchState) return '/';
+    if (!searchState) return 'Algolia Store';
     return stateToQueryString(searchState, (_queryObject: any, values: any) => {
       let { category } = values;
       if (!category) return `Algolia Store`;
@@ -148,10 +148,27 @@ export const configureRouting = (mapping: {
     });
   };
 
+
+  const searchStateToDescription = (searchState: any) => {
+    if (!searchState) return 'Buy everything you need is on Algolia Store.';
+    return stateToQueryString(searchState, (_queryObject: any, values: any) => {
+      let { category } = values;
+      if (!category) return `Algolia Store`;
+      // title needs to be <subcategory> | <category> | Algolia Store
+      // similar to the one found on https://www.lacoste.com/gb/lacoste/men/clothing/trousers-shorts/
+      category = category
+        .split(/\s+>\s+/)
+        .reverse()
+        .join(', ');
+      return `Everything ${category} is on Algolia Store`;
+    });
+  };
+
   return {
     urlToSearchState,
     searchStateToURL,
     searchStateToCanonicalUrl,
     searchStateToTitle,
+    searchStateToDescription
   };
 };
