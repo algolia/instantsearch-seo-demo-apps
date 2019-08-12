@@ -1,3 +1,4 @@
+/* eslint-disable import/no-commonjs */
 const algoliaSitemap = require('algolia-sitemap');
 const get = require('lodash.get');
 
@@ -19,7 +20,9 @@ function hitToParams(hit) {
 
   alreadyAdded[categoriesString] = true;
 
-  const categorySlug = categoriesString.replace(/\s+>\s+/g, '/').replace(/\s+/g, '+');
+  const categorySlug = categoriesString
+    .replace(/\s+>\s+/g, '/')
+    .replace(/\s+/g, '+');
   const loc = `https://is-seo-ssr-react-0.herokuapp.com/${categorySlug}`;
   return [{ loc }];
 }
@@ -38,8 +41,10 @@ const config = {
 (async () => {
   try {
     await algoliaSitemap(config);
+    // eslint-disable-next-line no-console
     console.log('done');
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
   }
 })();

@@ -339,3 +339,37 @@ mark {
     display: none;
   }
 }
+
+.lighthouse-report-button {
+  z-index: 9999;
+  background: white;
+  color: black;
+  position: relative;
+  padding: 1em 1.2em;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+.lighthouse-report-button:hover {
+  background: black;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+@media (min-width: 900px) {
+  .lighthouse-report-button {
+    position: absolute;
+    border-radius: 4px;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+    width: auto;
+  }
+  .lighthouse-report-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 11px rgba(55, 125, 255, 0.35);
+  }
+}
+

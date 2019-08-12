@@ -43,6 +43,9 @@ export class AppComponent extends Component<AppProps> {
         onSearchStateChange={this.props.onSearchStateChange}
         createURL={this.props.createURL}
       >
+        <a className="lighthouse-report-button" href="/lighthouse-report.html">
+          Lighthouse SEO report
+        </a>
         <header className="header">
           <p className="header-logo">
             <AlgoliaSvg />

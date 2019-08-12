@@ -90,7 +90,9 @@ export const configureRouting = (mapping: {
     const queryParams = qs.parse(queryString, {});
 
     const output = {};
-    for (const [queryParamPath, statePropertyConfig] of Object.entries(mapping)) {
+    for (const [queryParamPath, statePropertyConfig] of Object.entries(
+      mapping
+    )) {
       let value = get(queryParams, queryParamPath);
       value = statePropertyConfig.stringToState(value);
       if (value) {
@@ -148,7 +150,6 @@ export const configureRouting = (mapping: {
     });
   };
 
-
   const searchStateToDescription = (searchState: any) => {
     if (!searchState) return 'Buy everything you need is on Algolia Store.';
     return stateToQueryString(searchState, (_queryObject: any, values: any) => {
@@ -169,6 +170,6 @@ export const configureRouting = (mapping: {
     searchStateToURL,
     searchStateToCanonicalUrl,
     searchStateToTitle,
-    searchStateToDescription
+    searchStateToDescription,
   };
 };
