@@ -6,7 +6,7 @@ const app = express();
 app.use(
   rendertronMiddleware.makeMiddleware({
     // rendertron has been deployed on a separate app as it's too complicated to open two ports on heroku
-    proxyUrl: `https://instantsearch-rendertron-1.herokuapp.com/render/`,
+    proxyUrl: `https://<MY_RENDERTRON_INSTANCE>/render/`,
     timeout: 60 * 1000,
   })
 );

@@ -1,2 +1,3 @@
-Sitemap: https://is-seo-ssr-react-0.herokuapp.com/static/sitemaps/sitemap-index.xml
+# Uncomment the following line and set the URL to your deployed sitemap
+# Sitemap: https://<MY_DEPLOYED_WEBSITE>/sitemaps/sitemap-index.xml
 

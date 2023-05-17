@@ -1,1 +1,2 @@
-Sitemap: https://is-seo-dynamic-routing-0b.herokuapp.com/sitemaps/sitemap-index.xml
+# Uncomment the following line and set the URL to your deployed sitemap
+# Sitemap: https://<MY_DEPLOYED_WEBSITE>/sitemaps/sitemap-index.xml

@@ -146,56 +146,55 @@ jobs:
           app_name: "is-seo-csr-vue-0"
 
 workflows:
-  version: 2.1
+  version: 2
   build:
-    jobs:
-      - build_dynamic_rendering
-      - deploy_dynamic_rendering:
-          requires:
-            - build_dynamic_rendering
-          filters:
-            branches:
-              only: master
-      - build_server_side_rendering
-      - deploy_server_side_rendering:
-          requires:
-            - build_server_side_rendering
-          filters:
-            branches:
-              only: master
-      - build_partial_server_side_rendering
-      - deploy_partial_server_side_rendering:
-          requires:
-            - build_partial_server_side_rendering
-          filters:
-            branches:
-              only: master
-      - build_client_side_rendering_js
-      - deploy_client_side_rendering_js:
-          requires:
-            - build_client_side_rendering_js
-          filters:
-            branches:
-              only: master
-      - build_client_side_rendering_react
-      - deploy_client_side_rendering_react:
-          requires:
-            - build_client_side_rendering_react
-          filters:
-            branches:
-              only: master
-      - build_client_side_rendering_angular
-      - deploy_client_side_rendering_angular:
-          requires:
-            - build_client_side_rendering_angular
-          filters:
-            branches:
-              only: master
-      - build_client_side_rendering_vue
-      - deploy_client_side_rendering_vue:
-          requires:
-            - build_client_side_rendering_vue
-          filters:
-            branches:
-              only: master
-
+    jobs: []
+      # - build_dynamic_rendering
+      # - deploy_dynamic_rendering:
+      #     requires:
+      #       - build_dynamic_rendering
+      #     filters:
+      #       branches:
+      #         only: master
+      # - build_server_side_rendering
+      # - deploy_server_side_rendering:
+      #     requires:
+      #       - build_server_side_rendering
+      #     filters:
+      #       branches:
+      #         only: master
+      # - build_partial_server_side_rendering
+      # - deploy_partial_server_side_rendering:
+      #     requires:
+      #       - build_partial_server_side_rendering
+      #     filters:
+      #       branches:
+      #         only: master
+      # - build_client_side_rendering_js
+      # - deploy_client_side_rendering_js:
+      #     requires:
+      #       - build_client_side_rendering_js
+      #     filters:
+      #       branches:
+      #         only: master
+      # - build_client_side_rendering_react
+      # - deploy_client_side_rendering_react:
+      #     requires:
+      #       - build_client_side_rendering_react
+      #     filters:
+      #       branches:
+      #         only: master
+      # - build_client_side_rendering_angular
+      # - deploy_client_side_rendering_angular:
+      #     requires:
+      #       - build_client_side_rendering_angular
+      #     filters:
+      #       branches:
+      #         only: master
+      # - build_client_side_rendering_vue
+      # - deploy_client_side_rendering_vue:
+      #     requires:
+      #       - build_client_side_rendering_vue
+      #     filters:
+      #       branches:
+      #         only: master

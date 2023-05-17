@@ -23,7 +23,7 @@ function hitToParams(hit) {
   const categorySlug = categoriesString
     .replace(/\s+>\s+/g, '/')
     .replace(/\s+/g, '+');
-  const loc = `https://is-seo-ssr-react-0.herokuapp.com/${categorySlug}`;
+  const loc = `https://<MY_DEPLOYED_WEBSITE>/${categorySlug}`;
   return [{ loc }];
 }
 

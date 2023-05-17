@@ -1,40 +1,44 @@
 # Dynamic rendering with instantsearch.js
 
 ### Demo
-This demo is deployed on https://is-seo-dynamic-routing-0b.herokuapp.com/
-This demo get automatically deployed every time you merge to master.
+
+This demo relies on a rendertron instance that you have already set up.
 
 ### Run this for development
+
 #### 1. make sure rendertron instance is running  
-Go [instantsearch-rendertron-1.herokuapp.com/render](https://instantsearch-rendertron-1.herokuapp.com/render), you should see: 
+
+Go to `https://<MY_RENDERTRON_INSTANCE>/render`, you should see:
   
   ```
   Not Found
   ```
   
 You can check it's ready to prerender by going on: 
-  - `https://instantsearch-rendertron-1.herokuapp.com/render/https://algolia.com`
-  - `https://instantsearch-rendertron-1.herokuapp.com/render/https://community.algolia.com/instantsearch.js/v2/examples/e-commerce/`
-  - `https://instantsearch-rendertron-1.herokuapp.com/render/<https://mywebsite.com>`
+  - `https://<MY_RENDERTRON_INSTANCE>/render/https://algolia.com`
+  - `https://<MY_RENDERTRON_INSTANCE>/render/<https://MY_WEBSITE>`
 
-Since rendertron is hosted on a heroku free plan, you need to give it some time to warm up.
+Depending on your rendertron instance configuration, you need to give it some time to warm up.
 
 #### 2. Install the dependencies and run the local server:
+
+You also need to edit `index.js` to point `proxyUrl` to your rendertron instance.
 
 ```sh
 yarn
 yarn start
 ```
 
-The server should start on `http://localhost:3000` 
+The server should start on `http://localhost:3000`.
 
-#### 3. Set up an tunnel to make this server accessible outside your network:
+#### 3. Set up a tunnel to make this server accessible outside your network:
 
 ```bash
 ssh -R 80:localhost:3000 serveo.net
 ```
 
-@samouss: You can also use ngrok for this step too. 
+> **Note**
+> You can also use ngrok for this step too. 
 
 You should get an url of the form `https://*****.serveo.net/`. Open it. 
 
@@ -50,4 +54,6 @@ You should get an url of the form `https://*****.serveo.net/`. Open it.
     
    ![prerendering in the browser](./prerendering-in-browser.gif) 
 
+#### 5. Prepare for deployment:
 
+When you're ready for deployment, make sure you set the right website endpoint in `robots.txt` and generate your sitemap.
